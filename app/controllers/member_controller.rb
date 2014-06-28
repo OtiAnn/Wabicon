@@ -1,4 +1,5 @@
 class MemberController < ApplicationController
+  after_action :check_event_empty, only: [:destroy]
   def index
     @members = Event.find(params[:event_id]).users.all
     respond_to do |format|
@@ -39,6 +40,13 @@ class MemberController < ApplicationController
     respond_to do |format|
       format.html
       format.json {render json: @event.users, status: :unprocessable_entity }
+    end
+  end
+
+  private
+  def check_event_empty
+    if @event.users.size == 0
+      @event.delete
     end
   end
 end
