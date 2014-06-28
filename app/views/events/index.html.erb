@@ -10,6 +10,7 @@
       <th>Creator</th>
       <th>Node</th>
       <th>Category</th>
+      <th>End Time</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -24,6 +25,7 @@
         <td><%= event.creator_id %></td>
         <td><%= event.node_id %></td>
         <td><%= event.category_id %></td>
+        <td><%= event.end_time %></td>
         <td><%= link_to 'Show', node_event_path(event.node, event) %></td>
         <td><%= link_to 'Edit', edit_node_event_path(event.node, event) %></td>
         <td><%= link_to 'Destroy', node_event_path(event.node, event), method: :delete, data: { confirm: 'Are you sure?' } %></td>
