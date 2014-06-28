@@ -20,13 +20,9 @@
         <td><%= participant.name %></td>
         <td><%= participant.created_at %></td>
         <td><%= link_to 'Show', node_participant_path(participant.node, participant) %></td>
-        <td><%= link_to 'Edit', edit_node_participant_path(participant.node, participant) %></td>
         <td><%= link_to 'Destroy', node_participant_path(participant.node, participant), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<br>
-
-<%= link_to 'New User', new_user_path %>
