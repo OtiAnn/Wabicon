@@ -1,0 +1,32 @@
+<h1>Listing Participants</h1>
+<h3>
+  Node ID: <%= @node.id %><br>
+  Node Name: <%= @node.name %>
+</h3>
+<table class="table">
+  <thead>
+    <tr>
+      <th>User ID</th>
+      <th>User Name</th>
+      <th>Create Time</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @participants.each do |participant| %>
+      <tr>
+        <td><%= participant.id %></td>
+        <td><%= participant.name %></td>
+        <td><%= participant.created_at %></td>
+        <td><%= link_to 'Show', node_participant_path(participant.node, participant) %></td>
+        <td><%= link_to 'Edit', edit_node_participant_path(participant.node, participant) %></td>
+        <td><%= link_to 'Destroy', node_participant_path(participant.node, participant), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New User', new_user_path %>
