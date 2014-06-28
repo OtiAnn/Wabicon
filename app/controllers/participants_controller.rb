@@ -8,9 +8,10 @@ class ParticipantsController < ApplicationController
   end
   def create
     @node = Node.find(params[:node_id])
-    @participant = @node.users.build(user_id: params[:id])
+    @participant = User.find(params[:id])
     respond_to do |format|
-      if @participant.save
+      if @participant.update(node_id: params[:node_id])
+        #@users = User.find_by_node_id(params[:node_id])
         format.html
         format.json {render json: @node.users, status: :ok }
       else
@@ -21,10 +22,15 @@ class ParticipantsController < ApplicationController
   end
   def destroy
     @node = Node.find(params[:node_id])
-    @participant = @node.users.delete(user_id: params[:id])
+    @participant = User.find(params[:id])
     respond_to do |format|
-      format.html
-      format.json {render json: @node.users, status: :unprocessable_entity }
+      if @participant.update(node_id: nil)
+        format.html
+        format.json {render json: @node.users, status: :ok }
+      else
+        format.html
+        format.json {render json: @participant.errors, status: :unprocessable_entity }
+      end
     end
   end
 
