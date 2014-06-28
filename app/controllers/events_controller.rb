@@ -8,15 +8,19 @@ class EventsController < ApplicationController
   end
 
   def show
+  end
 
+  def new
+    @node = Node.find(params[:node_id])
+    @event = @node.events.build(event_params)
   end
 
   def create
     @node = Node.find(params[:node_id])
-    @events = @node.events.build(event_params)
+    @event = @node.events.build(event_params)
     respond_to do |format|
-      if @events.save
-        format.html
+      if @event.save
+        format.html {render :show}
         format.json {render json: @node.events, status: :ok }
       else
         format.html
@@ -37,7 +41,7 @@ class EventsController < ApplicationController
 
   private
     def event_params
-      params.permit(:creator_id, :category_id, :title, :content, :number)
+      params.require(:event).permit(:creator_id, :category_id, :title, :content, :number)
     end
 
 end
