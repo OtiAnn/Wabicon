@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   resources :member
   resources :users
   resources :nodes_users
+  resources :categories
   resources :nodes do
     resources :events
     resources :participants, :only => [:index, :create, :destroy]
