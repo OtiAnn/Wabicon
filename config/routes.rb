@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
-  resources :events, :only => [:index, :show, :create, :destroy]
-  resources :users, :only => [:index, :show]
-  resources :nodes_users, :only => [:index, :show, :create, :destroy]
+  resources :users
+  resources :nodes_users
   resources :nodes do
+    resources :events
     resources :participants, :only => [:index, :create, :destroy]
   end
 
