@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
   def index
-    @events = Node.find(uuid: params[:node_id]).events.all
+    @events = Node.find(params[:node_id]).events.all
     respond_to do |format|
       format.html
       format.json {render json: @events, status: :ok }
@@ -8,11 +8,11 @@ class EventsController < ApplicationController
   end
 
   def show
-    
+
   end
 
   def create
-    @node = Node.find(uuid: params[:node_id])
+    @node = Node.find(params[:node_id])
     @events = @node.events.build(event_params)
     respond_to do |format|
       if @events.save
@@ -26,7 +26,7 @@ class EventsController < ApplicationController
   end
 
   def destroy
-    @node = Node.find(uuid: params[:node_id])
+    @node = Node.find(params[:node_id])
     @event = @node.events.delete(events_id: parms[:id])
     respond_to do |format|
       format.html
@@ -35,7 +35,7 @@ class EventsController < ApplicationController
   end
 
 
-  private 
+  private
     def event_params
       params.permit(:creator_id, :category_id, :title, :content, :number)
     end
