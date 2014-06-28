@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   resources :categories
   resources :nodes do
     resources :events
-    resources :participants, :only => [:index, :create, :destroy]
+    resources :participants
   end
 
   resource :events do
