@@ -8,7 +8,7 @@ class ParticipantsController < ApplicationController
   end
   def create
     @node = Node.find(params[:node_id])
-    @participant = @node.users.build(user_id: parms[:id])
+    @participant = @node.users.build(user_id: params[:id])
     respond_to do |format|
       if @participant.save
         format.html
@@ -21,7 +21,7 @@ class ParticipantsController < ApplicationController
   end
   def destroy
     @node = Node.find(params[:node_id])
-    @participant = @node.users.delete(user_id: parms[:id])
+    @participant = @node.users.delete(user_id: params[:id])
     respond_to do |format|
       format.html
       format.json {render json: @node.users, status: :unprocessable_entity }
