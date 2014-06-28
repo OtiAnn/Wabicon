@@ -1,2 +1,14 @@
-<h1>Nodes#show</h1>
-<p>Find me in app/views/nodes/show.html.erb</p>
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @node.name %>
+</p>
+
+<p>
+  <strong>Uuid:</strong>
+  <%= @node.uuid %>
+</p>
+
+<%= link_to 'Edit', edit_node_path(@node) %> |
+<%= link_to 'Back', nodes_path %>
