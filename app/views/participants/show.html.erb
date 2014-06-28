@@ -1,0 +1,13 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @participant.name %>
+</p>
+<p>
+  <strong>Create Time:</strong>
+  <%= @participant.created_at %>
+</p>
+
+<%= link_to 'Edit', edit_node_participant_path(@node, @participant) %> |
+<%= link_to 'Back', node_participant_path %>

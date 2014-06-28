@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  
+
   resources :users
   resources :nodes_users
   resources :categories
