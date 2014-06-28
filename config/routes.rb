@@ -2,7 +2,9 @@ Rails.application.routes.draw do
   resources :events, :only => [:index, :show, :create, :destroy]
   resources :users, :only => [:index, :show]
   resources :nodes_users, :only => [:index, :show, :create, :destroy]
-  resources :nodes, :only => [:index, :show]
+  resources :nodes, :only => [:index, :show] do
+    resources :participants, :only => [:index, :create, :destroy]
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
