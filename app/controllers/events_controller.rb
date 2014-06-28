@@ -8,11 +8,18 @@ class EventsController < ApplicationController
   end
 
   def show
+    @node = Node.find(params[:node_id])
+    @event = @node.events.find(params[:id])
   end
 
   def new
     @node = Node.find(params[:node_id])
-    @event = @node.events.build(event_params)
+    @event = @node.events.build()
+  end
+
+  def edit
+    @node = Node.find(params[:node_id])
+    @event = @node.events.find(params[:id])
   end
 
   def create
@@ -29,11 +36,25 @@ class EventsController < ApplicationController
     end
   end
 
+  def update
+    @node = Node.find(params[:node_id])
+    @event = @node.events.build(event_params)
+    respond_to do |format|
+      if @event.update(event_params)
+        format.html {redirect_to [@node, @event], notice: 'Event was successfully updated.'}
+        format.json {render json: @node.events, status: :ok }
+      else
+        format.html {render :edit}
+        format.json {render json: @events.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   def destroy
     @node = Node.find(params[:node_id])
-    @event = @node.events.delete(events_id: parms[:id])
+    @event = @node.events.find(params[:id]).delete()
     respond_to do |format|
-      format.html
+      format.html {redirect_to node_events_path(@node), notice: 'Event was successfully destroyed.'}
       format.json {render json: @node.events, status: :ok }
     end
   end

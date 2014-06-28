@@ -2,5 +2,5 @@
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @event %> |
+<%= link_to 'Show', node_event_path(@event.node, @event) %> |
 <%= link_to 'Back', node_events_path %>
