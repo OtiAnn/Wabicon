@@ -1,8 +1,9 @@
 <h1>Listing Nodes</h1>
 
-<table>
+<table class="table">
   <thead>
     <tr>
+      <th>Node ID</th>
       <th>Name</th>
       <th>Uuid</th>
       <th colspan="3"></th>
@@ -12,6 +13,7 @@
   <tbody>
     <% @nodes.each do |node| %>
       <tr>
+        <td><%= node.id %></td>
         <td><%= node.name %></td>
         <td><%= node.uuid %></td>
         <td><%= link_to 'Show', node %></td>
