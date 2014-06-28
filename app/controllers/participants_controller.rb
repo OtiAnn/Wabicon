@@ -1,6 +1,7 @@
 class ParticipantsController < ApplicationController
   def index
-    @users = Node.find(params[:node_id]).users.all
+    @node = Node.find(params[:node_id])
+    @users = User.find_by_node_id(params[:node_id])
     respond_to do |format|
       format.json {render json: @users, status: :ok }
     end
