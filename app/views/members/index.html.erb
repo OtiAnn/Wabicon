@@ -19,7 +19,7 @@
         <td><%= member.user_id %></td>
         <td><%= User.find(member.user_id).name %></td>
         <td><%= member.created_at %></td>
-        <td><%= link_to 'Destroy', event_member_path(@event, member), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Destroy', event_member_path(@event, member.user_id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
