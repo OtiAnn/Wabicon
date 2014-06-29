@@ -16,8 +16,8 @@
   <tbody>
     <% @members.each do |member| %>
       <tr>
-        <td><%= member.id %></td>
-        <td><%= member.user.name %></td>
+        <td><%= member.user_id %></td>
+        <td><%= User.find(member.user_id).name %></td>
         <td><%= member.created_at %></td>
         <td><%= link_to 'Destroy', event_member_path(@event, member), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>

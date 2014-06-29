@@ -22,7 +22,7 @@ class MembersController < ApplicationController
     respond_to do |format|
       if @member.save
         format.html
-        format.json {render json: @event.event_user_associations, :include => {:user => {:only => :name}}, status: :ok }
+        format.json {render json: @event.event_user_associations, :include => {:user => {:only => [:id, :name]}}, status: :ok }
       else
         format.html
         format.json {render json: @member.errors, status: :unprocessable_entity }
