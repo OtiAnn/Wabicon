@@ -5,6 +5,7 @@
     <tr>
       <th>Node ID</th>
       <th>Name</th>
+      <th>Event</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -14,6 +15,7 @@
       <tr>
         <td><%= node.id %></td>
         <td><%= node.name %></td>
+        <td><%= link_to 'Show Events', node_events_path(node) %> (<%= node.events.count %>)</td>
         <td><%= link_to 'Show', node %></td>
         <td><%= link_to 'Edit', edit_node_path(node) %></td>
         <td><%= link_to 'Destroy', node, method: :delete, data: { confirm: 'Are you sure?' } %></td>
