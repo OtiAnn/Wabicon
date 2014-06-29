@@ -25,8 +25,9 @@ class EventsController < ApplicationController
   def create
     @node = Node.find(params[:node_id])
     @event = @node.events.build(event_params)
+    @member = @event.event_user_associations.build(user_id: event_params[:creator_id])
     respond_to do |format|
-      if @event.save
+      if @event.save && @member.save
         format.html {render :show}
         format.json {render json: @node.events, status: :ok }
       else
