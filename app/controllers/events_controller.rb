@@ -38,7 +38,7 @@ class EventsController < ApplicationController
 
   def update
     @node = Node.find(params[:node_id])
-    @event = @node.events.build(event_params)
+    @event = @node.events.find(params[:id])
     respond_to do |format|
       if @event.update(event_params)
         format.html {redirect_to [@node, @event], notice: 'Event was successfully updated.'}
