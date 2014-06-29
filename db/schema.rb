@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140628200154) do
+ActiveRecord::Schema.define(version: 20140629014816) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(version: 20140628200154) do
     t.integer  "creator_id"
     t.integer  "node_id"
     t.datetime "end_time"
+    t.integer  "event_user_associations_count", default: 0
   end
 
   create_table "nodes", force: true do |t|
