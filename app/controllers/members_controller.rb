@@ -1,10 +1,10 @@
-class MemberController < ApplicationController
+class MembersController < ApplicationController
   after_action :check_event_empty, only: [:destroy]
   def index
     @members = Event.find(params[:event_id]).event_user_associations
     respond_to do |format|
       format.html
-      format.json {render json: @members, status: :ok }
+      format.json {render json: @members, :include => {:user => {:only => :name}}, status: :ok }
     end
   end
 
@@ -21,7 +21,7 @@ class MemberController < ApplicationController
     respond_to do |format|
       if @member.save
         format.html
-        format.json {render json: @event.event_user_associations, status: :ok }
+        format.json {render json: @event.event_user_associations, :include => {:user => {:only => :name}}, status: :ok }
       else
         format.html
         format.json {render json: @member.errors, status: :unprocessable_entity }
@@ -40,7 +40,7 @@ class MemberController < ApplicationController
     @member = @event.event_user_associations.find_by_user_id(parms[:id]).delete()
     respond_to do |format|
       format.html
-      format.json {render json: @event.event_user_associations, status: :unprocessable_entity }
+      format.json {render json: @event.event_user_associations, :include => {:user => {:only => :name}}, status: :unprocessable_entity }
     end
   end
 

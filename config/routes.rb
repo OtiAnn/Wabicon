@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     resources :participants
   end
 
-  resource :events do
+  resources :events do
     resources :members
   end
 
