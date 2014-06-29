@@ -1,2 +1,6 @@
-<h1>Member#edit</h1>
-<p>Find me in app/views/member/edit.html.erb</p>
+<h1>Editing Member</h1>
+
+<%= render 'form' %>
+
+<%= link_to 'Edit', edit_event_member_path(@event, @member) %> |
+<%= link_to 'Back', event_member_path %>

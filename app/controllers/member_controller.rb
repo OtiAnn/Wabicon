@@ -3,12 +3,13 @@ class MemberController < ApplicationController
   def index
     @members = Event.find(params[:event_id]).event_user_associations
     respond_to do |format|
+      format.html
       format.json {render json: @members, status: :ok }
     end
   end
 
   def show
-
+    @member = User.find(params[:id])
   end
 
   def new

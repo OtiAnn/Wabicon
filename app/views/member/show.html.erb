@@ -1,2 +1,13 @@
-<h1>Member#show</h1>
-<p>Find me in app/views/member/show.html.erb</p>
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @member.name %>
+</p>
+<p>
+  <strong>Create Time:</strong>
+  <%= @member.created_at %>
+</p>
+
+<%= link_to 'Edit', edit_event_member_path(@event, @member) %> |
+<%= link_to 'Back', event_members_path %>
