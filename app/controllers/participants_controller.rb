@@ -11,14 +11,14 @@ class ParticipantsController < ApplicationController
     @node = Node.find(params[:node_id])
     @participant = User.find(params[:id])
   end
-  def new
-    @node = Node.find(params[:node_id])
-    @participant = @node.users.build()
-  end
-  def edit
-    @node = Node.find(params[:node_id])
-    @participant = User.find(params[:id])
-  end
+  # def new
+  #   @node = Node.find(params[:node_id])
+  #   @participant = @node.users.build()
+  # end
+  # def edit
+  #   @node = Node.find(params[:node_id])
+  #   @participant = User.find(params[:id])
+  # end
   def create
     @node = Node.find(params[:node_id])
     @participant = User.find(params[:id])
@@ -50,7 +50,7 @@ class ParticipantsController < ApplicationController
     @participant = User.find(params[:id])
     respond_to do |format|
       if @participant.update(node_id: nil)
-        format.html
+        format.html {redirect_to node_participants_path(@node), notice: 'Participant was successfully destroyed.'}
         format.json {render json: @node.users, status: :ok }
       else
         format.html
