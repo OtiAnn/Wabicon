@@ -22,10 +22,10 @@ class MembersController < ApplicationController
     respond_to do |format|
       if @member.save
         format.html
-        format.json {render json: @event.event_user_associations, :include => {:user => {:only => [:id, :name]}}, status: :ok }
+        format.json {render json: {state:'you win!'}, :include => {:user => {:only => [:id, :name]}}, status: :ok }
       else
         format.html
-        format.json {render json: @member.errors, status: :unprocessable_entity }
+        format.json {render json: {state:'Shit!'}, status: :unprocessable_entity }
       end
     end
   end
@@ -38,10 +38,10 @@ class MembersController < ApplicationController
 
   def destroy
     @event = Event.find(params[:event_id])
-    @member = @event.event_user_associations.find_by_user_id(params[:id]).delete()
+    @member = @event.event_user_associations.find_by_user_id(params[:id]).destroy()
     respond_to do |format|
       format.html {redirect_to event_members_path(@event), notice: 'Member was successfully destroyed.'}
-      format.json {render json: @event.event_user_associations, :include => {:user => {:only => :name}}, status: :unprocessable_entity }
+      format.json {render json: @event.event_user_associations, :include => {:user => {:only => :name}}, status: :ok }
     end
   end
 

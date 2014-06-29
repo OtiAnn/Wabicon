@@ -10,6 +10,12 @@ class NodesController < ApplicationController
   # GET /nodes/1
   # GET /nodes/1.json
   def show
+    @node = Node.find(params[:id])
+
+    respond_to do |format|
+      format.html
+      format.json { render json: @node, status: :ok }
+    end
   end
 
   # GET /nodes/new
