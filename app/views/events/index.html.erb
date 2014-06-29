@@ -11,6 +11,7 @@
       <th>Node</th>
       <th>Category</th>
       <th>End Time</th>
+      <th>目前人數</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -26,6 +27,8 @@
         <td><%= event.node_id %></td>
         <td><%= event.category_id %></td>
         <td><%= event.end_time %></td>
+        <td><%= event.event_user_associations_count %></td>
+        <td><%= link_to 'Members', event_members_path(event) %></td>
         <td><%= link_to 'Show', node_event_path(event.node, event) %></td>
         <td><%= link_to 'Edit', edit_node_event_path(event.node, event) %></td>
         <td><%= link_to 'Destroy', node_event_path(event.node, event), method: :delete, data: { confirm: 'Are you sure?' } %></td>
