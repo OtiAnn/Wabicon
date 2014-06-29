@@ -1,7 +1,7 @@
 <h1>Listing Member</h1>
 <h3>
   Event ID: <%= @event.id %><br>
-  Event Name: <%= @event.name %>
+  Event Title: <%= @event.title %>
 </h3>
 <table class="table">
   <thead>
@@ -17,10 +17,9 @@
     <% @members.each do |member| %>
       <tr>
         <td><%= member.id %></td>
-        <td><%= member.name %></td>
+        <td><%= member.user.name %></td>
         <td><%= member.created_at %></td>
-        <td><%= link_to 'Show', event_member_path(member.event, member) %></td>
-        <td><%= link_to 'Destroy', event_member_path(member.event, member), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Destroy', event_member_path(@event, member), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
