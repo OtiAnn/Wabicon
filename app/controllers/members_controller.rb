@@ -1,8 +1,10 @@
 class MembersController < ApplicationController
   after_action :check_event_empty, only: [:destroy]
   def index
+    @event = Event.find(params[:event_id])
     @members = Event.find(params[:event_id]).event_user_associations
     respond_to do |format|
+      format.html
       format.json {render json: @members, :include => {:user => {:only => :name}}, status: :ok }
     end
   end
@@ -16,7 +18,7 @@ class MembersController < ApplicationController
 
   def create
     @event = Event.find(params[:event_id])
-    @member = @event.event_user_associations.build(user_id: parms[:id])
+    @member = @event.event_user_associations.build(user_id: params[:id])
     respond_to do |format|
       if @member.save
         format.html
@@ -36,9 +38,9 @@ class MembersController < ApplicationController
 
   def destroy
     @event = Event.find(params[:event_id])
-    @member = @event.event_user_associations.find_by_user_id(parms[:id]).delete()
+    @member = @event.event_user_associations.find_by_user_id(params[:id]).delete()
     respond_to do |format|
-      format.html
+      format.html {redirect_to event_members_path(@event), notice: 'Member was successfully destroyed.'}
       format.json {render json: @event.event_user_associations, :include => {:user => {:only => :name}}, status: :unprocessable_entity }
     end
   end
